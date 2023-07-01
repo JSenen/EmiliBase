@@ -6,6 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +26,15 @@ public class Lorry {
     @Column
     private String model;
 
+    @OneToMany (mappedBy = "lorry",cascade = CascadeType.ALL)
+    private List<Review> reviewList;
+
+    @ManyToMany
+    @JoinTable(
+            name = "lorry_trailer",
+            joinColumns = @JoinColumn(name = "lorry_id"),
+            inverseJoinColumns = @JoinColumn(name = "trailer_id")
+    )
+    private Set<Trailer> trailers = new HashSet<>();
 }
+

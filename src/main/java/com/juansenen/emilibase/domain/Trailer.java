@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,5 +20,8 @@ public class Trailer {
     private long idTrailer;
     @Column
     private String plate;
+
+    @ManyToMany(mappedBy = "trailers")
+    private Set<Lorry> lorries = new HashSet<>();
 
 }

@@ -31,4 +31,8 @@ public class Review {
     private Date dateIn;
     @Column(name = "date_out")
     private Date dateOut;
+
+    @ManyToOne
+    @JoinColumn(name = "idlorry_review")
+    private Lorry lorry;
 }
