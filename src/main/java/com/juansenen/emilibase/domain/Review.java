@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -35,4 +37,12 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "idlorry_review")
     private Lorry lorry;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Review-Store",
+            joinColumns = @JoinColumn(name = "id_review"),
+            inverseJoinColumns = @JoinColumn(name = "id_mechanic")
+    )
+    private Set<MechanicStore> mechanicStoreSet = new HashSet<>();
 }
