@@ -42,7 +42,7 @@ public class LorryController {
     }
 
     @PutMapping("/lorry/{id}")
-    public ResponseEntity<Lorry> modLorry(@PathVariable long id, @RequestBody Lorry lorry){
+    public ResponseEntity<Lorry> modLorry(@PathVariable long id, @RequestBody Lorry lorry) throws LorryNoFoundException {
         Lorry updateLorry = lorryService.updateLorry(id, lorry);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(updateLorry);
     }
