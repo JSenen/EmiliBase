@@ -7,4 +7,5 @@ import java.util.List;
 public interface LorryService {
 
     List<Lorry> findAll();
+    Lorry add(Lorry lorry);
 }

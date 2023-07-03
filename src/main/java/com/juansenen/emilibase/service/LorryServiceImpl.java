@@ -17,4 +17,10 @@ public class LorryServiceImpl implements LorryService{
         List<Lorry> lorries = lorryRepository.findAll();
         return lorries;
     }
+
+    @Override
+    public Lorry add(Lorry lorry) {
+        Lorry newLorry = lorryRepository.save(lorry);
+        return newLorry;
+    }
 }
