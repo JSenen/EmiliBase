@@ -24,7 +24,7 @@ public class LorryController {
 
     @GetMapping("/lorries")
     public ResponseEntity<List<Lorry>> getAll(){
-        logger.info("Get All lorries");
+        logger.info("GET All lorries");
         return ResponseEntity.ok(lorryService.findAll());
 
     }
@@ -32,18 +32,21 @@ public class LorryController {
     @PostMapping("/lorry")
     public ResponseEntity<Lorry> addLorry(@RequestBody Lorry lorry){
         Lorry newLorry = lorryService.add(lorry);
+        logger.info("POST lorry");
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(lorry);
     }
 
     @DeleteMapping("/lorry/{id}")
     public ResponseEntity<Void> delLorry(@PathVariable long id) throws LorryNoFoundException {
         lorryService.deleteLorry(id);
+        logger.info("DELETE lorry"+id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/lorry/{id}")
     public ResponseEntity<Lorry> modLorry(@PathVariable long id, @RequestBody Lorry lorry) throws LorryNoFoundException {
         Lorry updateLorry = lorryService.updateLorry(id, lorry);
+        logger.info("PUT lorry"+id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(updateLorry);
     }
 
