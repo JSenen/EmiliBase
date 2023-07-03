@@ -1,6 +1,7 @@
 package com.juansenen.emilibase.controler;
 
 import com.juansenen.emilibase.domain.Lorry;
+import com.juansenen.emilibase.exception.LorryNoFoundException;
 import com.juansenen.emilibase.service.LorryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,12 @@ public class LorryController {
     public ResponseEntity<Lorry> addLorry(@RequestBody Lorry lorry){
         Lorry newLorry = lorryService.add(lorry);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(lorry);
+    }
+
+    @DeleteMapping("/lorry/{id}")
+    public ResponseEntity<Void> delLorry(@PathVariable long id) throws LorryNoFoundException {
+        lorryService.deleteLorry(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
