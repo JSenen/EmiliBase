@@ -41,4 +41,10 @@ public class LorryController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/lorry/{id}")
+    public ResponseEntity<Lorry> modLorry(@PathVariable long id, @RequestBody Lorry lorry){
+        Lorry updateLorry = lorryService.updateLorry(id, lorry);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(updateLorry);
+    }
+
 }

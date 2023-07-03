@@ -31,4 +31,14 @@ public class LorryServiceImpl implements LorryService{
                         .orElseThrow(()->new LorryNoFoundException("Lorry no found"));
         lorryRepository.delete(deleteLorry);
     }
+
+    @Override
+    public Lorry updateLorry(long id, Lorry lorry) throws LorryNoFoundException {
+        Lorry modLorry = lorryRepository.findById(id)
+                .orElseThrow(()->new LorryNoFoundException("Lorry No Found"));
+        modLorry.setBrand(lorry.getBrand());
+        modLorry.setKm(lorry.getKm());
+        modLorry.setModel(lorry.getModel());
+        return lorryRepository.save(modLorry);
+    }
 }

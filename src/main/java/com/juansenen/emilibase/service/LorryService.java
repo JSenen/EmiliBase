@@ -11,4 +11,6 @@ public interface LorryService {
     Lorry add(Lorry lorry);
 
     void deleteLorry(long id) throws LorryNoFoundException;
+
+    Lorry updateLorry(long id, Lorry lorry) throws LorryNoFoundException;
 }
